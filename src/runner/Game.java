@@ -2,8 +2,6 @@ package runner;
 
 import scanner.EnterFromConsole;
 
-import static runner.PlayingField.RADIX;
-
 public class Game {
 
     boolean isRunning = true;
@@ -16,7 +14,7 @@ public class Game {
             System.out.println("2 - SinglePlayer");
             System.out.println("3 - Exit\n");
             System.out.print("Your choice: ");
-            switch(EnterFromConsole.enterInt()){
+            switch (EnterFromConsole.enterInt()) {
                 case 1:
                     gameModePlayerVSPlayer();
                     break;
@@ -26,40 +24,40 @@ public class Game {
                 case 3:
                     isRunning = false;
                     break;
-                default: break;
+                default:
+                    break;
             }
         }
     }
-    void gameModePlayerVSPlayer(){
+
+    void gameModePlayerVSPlayer() {
 
         Cell[][] field = PlayingField.create();
         Player player = new Player();
 
         boolean exit = false;
-        while(!exit){
+        while (!exit) {
             PlayingField.illustrate(field);
             player.makeAMove(field);
-            if(winCheck(field)){
-                exit=true;
+            if (winCheck(field)) {
+                exit = true;
                 PlayingField.illustrate(field);
-                System.out.println("The winner is the "+player.playerTurn+"-th player!!!\n\n\n");
-            }
-            else if(PlayingField.isFilled(field)){
-                exit=true;
+                System.out.println("The winner is the " + player.playerTurn + "-th player!!!\n\n\n");
+            } else if (PlayingField.isFilled(field)) {
+                exit = true;
                 PlayingField.illustrate(field);
                 System.out.println("DRAW!!!\n\n\n");
-            }
-            else player.turnChange();
+            } else player.turnChange();
         }
     }
 
-    void gameModePlayerVSComp(){
+    void gameModePlayerVSComp() {
         Cell[][] field = PlayingField.create();
     }
 
-    boolean lineIsEquallyFilled(Cell[] line){
+    boolean lineIsEquallyFilled(Cell[] line) {
         for (int i = 1; i < line.length; i++) {
-            if(line[i].status != line[i - 1].status || line[i].isEmpty())return false;
+            if (line[i].status != line[i - 1].status || line[i].isEmpty()) return false;
         }
         return true;
     }
@@ -68,13 +66,13 @@ public class Game {
         return cell1.status==cell2.status && cell2.status==cell3.status && !cell3.isEmpty();
     }*/
 
-    boolean winCheck(Cell[][] field){
-        if(lineIsEquallyFilled(PlayingField.leftDiagonal(field)))return true;
-        else if(lineIsEquallyFilled(PlayingField.rightDiagonal(field))) return true;
-        else{
+    boolean winCheck(Cell[][] field) {
+        if (lineIsEquallyFilled(PlayingField.leftDiagonal(field))) return true;
+        else if (lineIsEquallyFilled(PlayingField.rightDiagonal(field))) return true;
+        else {
             for (int i = 0; i < field.length; i++) {
-                if(lineIsEquallyFilled(PlayingField.horizontalLine(field,i))) return true;
-                if(lineIsEquallyFilled(PlayingField.verticalLine(field,i))) return true;
+                if (lineIsEquallyFilled(PlayingField.horizontalLine(field, i))) return true;
+                if (lineIsEquallyFilled(PlayingField.verticalLine(field, i))) return true;
             }
         }
         return false;

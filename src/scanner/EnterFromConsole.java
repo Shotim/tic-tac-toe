@@ -10,18 +10,18 @@ public class EnterFromConsole {
     public static int enterInt() {
         Scanner scanner = new Scanner(System.in);
 
-        while(!scanner.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             scanner.nextLine();
         }
 
         return scanner.nextInt();
     }
 
-    private static int enterCoordinate(){
+    private static int enterCoordinate() {
         int coordinate;
-        do{
+        do {
             coordinate = enterInt();
-        }while(coordinate > TWO || coordinate < ZERO);
+        } while (coordinate > TWO || coordinate < ZERO);
         return coordinate;
     }
 
