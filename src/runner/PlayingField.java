@@ -1,11 +1,11 @@
 package runner;
 
 public class PlayingField {
-    private static final int RADIX = 3;
-    private static final int HORIZONTAL = 1;
-    private static final int VERTICAL = 2;
-    private static final int LEFT = 3;
-    private static final int RIGHT = 4;
+    public static final int RADIX = 3;
+    public static final int HORIZONTAL = 1;
+    public static final int VERTICAL = 2;
+    public static final int LEFT = 3;
+    public static final int RIGHT = 4;
 
 
     public static Cell[] line(Cell[][] field, int indexNumber, int lineType) {
