@@ -2,8 +2,43 @@ package runner;
 
 public class PlayingField {
     public static final int RADIX = 3;
+    public static final int HORIZONTAL = 1;
+    public static final int VERTICAL = 2;
+    public static final int LEFT = 3;
+    public static final int RIGHT = 4;
 
-    public static Cell[] horizontalLine(Cell[][] field, int indexNumber) {
+
+    public static Cell[] line(Cell[][] field, int indexNumber, int lineType) {
+        Cell[] line = new Cell[field.length];
+        for (int i = 0; i < line.length; i++) {
+            switch (lineType) {
+                case HORIZONTAL:
+                    line[i] = field[indexNumber][i];
+                    break;
+                case VERTICAL:
+                    line[i] = field[i][indexNumber];
+                    break;
+            }
+        }
+        return line;
+    }
+
+    public static Cell[] diagonal(Cell[][] field, int diagonalType) {
+        Cell[] diagonal = new Cell[field.length];
+        for (int i = 0; i < diagonal.length; i++) {
+            switch (diagonalType) {
+                case LEFT:
+                    diagonal[i] = field[i][i];
+                    break;
+                case RIGHT:
+                    diagonal[i] = field[i][diagonal.length - 1 - i];
+                    break;
+            }
+        }
+        return diagonal;
+    }
+
+    /*public static Cell[] horizontalLine(Cell[][] field, int indexNumber) {
         Cell[] line = new Cell[field.length];
         for (int i = 0; i < line.length; i++) {
             line[i] = field[indexNumber][i];
@@ -33,7 +68,7 @@ public class PlayingField {
             diagonal[i] = field[i][diagonal.length - 1 - i];
         }
         return diagonal;
-    }
+    }*/
 
     public static Cell[][] create() {
         Cell[][] field = new Cell[RADIX][RADIX];
