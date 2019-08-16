@@ -17,8 +17,12 @@ public class Player {
         playerTurn = (playerTurn == FIRST) ? SECOND : FIRST;
     }
 
-    private void markTheCell(Cell cell) {
+    public void markTheCell(Cell cell) {
         cell.status = (playerTurn == FIRST) ? Cell.X_SIGN : Cell.O_SIGN;
+    }
+
+    public void unmarkTheCell(Cell cell) {
+        cell.status = 0;
     }
 
     void makeAMove(Cell[][] field) {
@@ -36,6 +40,5 @@ public class Player {
                 System.out.println("Type coordinates again!!!");
             }
         }
-
     }
 }
