@@ -67,12 +67,12 @@ public class Game {
     }*/
 
     boolean winCheck(Cell[][] field) {
-        if (lineIsEquallyFilled(PlayingField.leftDiagonal(field))) return true;
-        else if (lineIsEquallyFilled(PlayingField.rightDiagonal(field))) return true;
+        if (lineIsEquallyFilled(PlayingField.diagonal(field, PlayingField.LEFT))) return true;
+        else if (lineIsEquallyFilled(PlayingField.diagonal(field, PlayingField.RIGHT))) return true;
         else {
             for (int i = 0; i < field.length; i++) {
-                if (lineIsEquallyFilled(PlayingField.horizontalLine(field, i))) return true;
-                if (lineIsEquallyFilled(PlayingField.verticalLine(field, i))) return true;
+                if (lineIsEquallyFilled(PlayingField.line(field, i, PlayingField.HORIZONTAL))) return true;
+                if (lineIsEquallyFilled(PlayingField.line(field, i, PlayingField.VERTICAL))) return true;
             }
         }
         return false;
