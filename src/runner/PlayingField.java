@@ -3,6 +3,38 @@ package runner;
 public class PlayingField {
     public static final int RADIX = 3;
 
+    public static Cell[] horizontalLine(Cell[][] field, int indexNumber){
+        Cell[] line = new Cell[field.length];
+        for (int i = 0; i < line.length; i++) {
+            line[i] = field[indexNumber][i];
+        }
+        return line;
+    }
+
+    public static Cell[] verticalLine(Cell[][] field, int indexNumber){
+        Cell[] line = new Cell[field.length];
+        for (int i = 0; i < line.length; i++) {
+            line[i] = field[i][indexNumber];
+        }
+        return line;
+    }
+
+    public static Cell[] leftDiagonal(Cell[][] field){
+        Cell[] diagonal = new Cell[field.length];
+        for (int i = 0; i < diagonal.length; i++) {
+            diagonal[i] = field[i][i];
+        }
+        return diagonal;
+    }
+
+    public static Cell[] rightDiagonal(Cell[][] field){
+        Cell[] diagonal = new Cell[field.length];
+        for (int i = 0; i < diagonal.length; i++) {
+            diagonal[i] = field[i][diagonal.length - 1 - i];
+        }
+        return diagonal;
+    }
+
     public static Cell[][] create(){
         Cell[][] field = new Cell[RADIX][RADIX];
         for(int i = 0; i < RADIX; i++){

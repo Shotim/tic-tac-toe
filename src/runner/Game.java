@@ -1,6 +1,5 @@
 package runner;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import scanner.EnterFromConsole;
 
 import static runner.PlayingField.RADIX;
@@ -58,11 +57,30 @@ public class Game {
         Cell[][] field = PlayingField.create();
     }
 
-    boolean lineIsEquallyFilled(Cell cell1,Cell cell2,Cell cell3){
-        return cell1.status==cell2.status && cell2.status==cell3.status && !cell3.isEmpty();
+    boolean lineIsEquallyFilled(Cell[] line){
+        for (int i = 1; i < line.length; i++) {
+            if(line[i].status != line[i - 1].status || line[i].isEmpty())return false;
+        }
+        return true;
     }
 
+    /*boolean lineIsEquallyFilled(Cell cell1,Cell cell2,Cell cell3){
+        return cell1.status==cell2.status && cell2.status==cell3.status && !cell3.isEmpty();
+    }*/
+
     boolean winCheck(Cell[][] field){
+        if(lineIsEquallyFilled(PlayingField.leftDiagonal(field)))return true;
+        else if(lineIsEquallyFilled(PlayingField.rightDiagonal(field))) return true;
+        else{
+            for (int i = 0; i < field.length; i++) {
+                if(lineIsEquallyFilled(PlayingField.horizontalLine(field,i))) return true;
+                if(lineIsEquallyFilled(PlayingField.verticalLine(field,i))) return true;
+            }
+        }
+        return false;
+    }
+
+    /*boolean winCheck(Cell[][] field){
         if(lineIsEquallyFilled(field[0][0],field[1][1],field[2][2])) return true;
         else if(lineIsEquallyFilled(field[2][0],field[1][1],field[0][2])) return true;
         else{
@@ -72,7 +90,7 @@ public class Game {
             }
         }
         return false;
-    }
+    }*/
 
 
 }
