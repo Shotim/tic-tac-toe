@@ -2,14 +2,14 @@ package runner;
 
 import scanner.EnterFromConsole;
 
-public class Player {
+class Player {
     private static final int FIRST = 1;
     private static final int SECOND = 2;
 
 
-    public int playerTurn;
+    int playerTurn;
 
-    public Player() {
+    Player() {
         playerTurn = FIRST;
     }
 
@@ -17,11 +17,11 @@ public class Player {
         playerTurn = (playerTurn == FIRST) ? SECOND : FIRST;
     }
 
-    public void markTheCell(Cell cell) {
+    void markTheCell(Cell cell) {
         cell.status = (playerTurn == FIRST) ? Cell.X_SIGN : Cell.O_SIGN;
     }
 
-    public void unmarkTheCell(Cell cell) {
+    void unmarkTheCell(Cell cell) {
         cell.status = 0;
     }
 

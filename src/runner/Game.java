@@ -2,7 +2,7 @@ package runner;
 
 import scanner.EnterFromConsole;
 
-public class Game {
+class Game {
 
     private static final int BOT = 1;
     private static final int HUMAN = -1;
@@ -11,12 +11,12 @@ public class Game {
     private static final int PLAYER_VS_PLAYER_MODE = 1;
     private static final int PLAYER_VS_COMP_MODE = 2;
     private static final int EXIT = 3;
-    public static final int ANGLE = 1;
-    public static final int ANY = 2;
+    private static final int ANGLE = 1;
+    private static final int ANY = 2;
 
     private boolean isRunning = true;
 
-    public void menu() {
+    void menu() {
 
         while (isRunning) {
             System.out.println("!!!TIC TAC TOE!!! GAME\n");
@@ -103,25 +103,25 @@ public class Game {
         else if (findingWinSituation(field, player, HUMAN)) return COMPLETE;
         else if (field[field.length / 2][field.length / 2].isEmpty())
             player.markTheCell(field[field.length / 2][field.length / 2]);
-        else if (findingCellToMark(field, player,ANGLE)) return COMPLETE;
-        else findingCellToMark(field, player,ANY);
+        else if (findingCellToMark(field, player, ANGLE)) return COMPLETE;
+        else findingCellToMark(field, player, ANY);
         return COMPLETE;
     }
 
     private boolean findingWinSituation(Cell[][] field, Player player, int side) {
         if (side == HUMAN) player.turnChange();
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[i].length; j++) {
-                if (field[i][j].isEmpty()) {
-                    player.markTheCell(field[i][j]);
+        for (Cell[] line : field) {
+            for (Cell cell : line) {
+                if (cell.isEmpty()) {
+                    player.markTheCell(cell);
                     if (winCheck(field)) {
                         if (side == HUMAN) {
                             player.turnChange();
-                            player.markTheCell(field[i][j]);
+                            player.markTheCell(cell);
                         }
                         return COMPLETE;
                     }
-                    player.unmarkTheCell(field[i][j]);
+                    player.unmarkTheCell(cell);
                 }
             }
         }
@@ -131,13 +131,10 @@ public class Game {
 
     private boolean findingCellToMark(Cell[][] field, Player player, int cellType) {
         int step;
-        switch (cellType) {
-            case ANGLE:
-                step = field.length - 1;
-                break;
-            default:
-                step = 1;
-                break;
+        if (cellType == ANGLE) {
+            step = field.length - 1;
+        } else {
+            step = 1;
         }
         for (int i = 0; i < field.length; i += step) {
             for (int j = 0; j < field.length; j += step) {
