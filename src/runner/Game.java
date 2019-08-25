@@ -11,6 +11,8 @@ public class Game {
     private static final int PLAYER_VS_PLAYER_MODE = 1;
     private static final int PLAYER_VS_COMP_MODE = 2;
     private static final int EXIT = 3;
+    public static final int ANGLE = 1;
+    public static final int ANY = 2;
 
     private boolean isRunning = true;
 
@@ -101,8 +103,8 @@ public class Game {
         else if (findingWinSituation(field, player, HUMAN)) return COMPLETE;
         else if (field[field.length / 2][field.length / 2].isEmpty())
             player.markTheCell(field[field.length / 2][field.length / 2]);
-        else if (findingAngleToMark(field, player)) return COMPLETE;
-        else findingAnyCellToMark(field, player);
+        else if (findingCellToMark(field, player,ANGLE)) return COMPLETE;
+        else findingCellToMark(field, player,ANY);
         return COMPLETE;
     }
 
@@ -127,9 +129,18 @@ public class Game {
         return INCOMPLETE;
     }
 
-    private boolean findingAngleToMark(Cell[][] field, Player player) {
-        for (int i = 0; i < field.length; i += field.length - 1) {
-            for (int j = 0; j < field.length; j += field.length - 1) {
+    private boolean findingCellToMark(Cell[][] field, Player player, int cellType) {
+        int step;
+        switch (cellType) {
+            case ANGLE:
+                step = field.length - 1;
+                break;
+            default:
+                step = 1;
+                break;
+        }
+        for (int i = 0; i < field.length; i += step) {
+            for (int j = 0; j < field.length; j += step) {
                 if (field[i][j].isEmpty()) {
                     player.markTheCell(field[i][j]);
                     return COMPLETE;
@@ -138,18 +149,4 @@ public class Game {
         }
         return INCOMPLETE;
     }
-
-    private boolean findingAnyCellToMark(Cell[][] field, Player player) {
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field.length; j++) {
-                if (field[i][j].isEmpty()) {
-                    player.markTheCell(field[i][j]);
-                    return COMPLETE;
-                }
-            }
-        }
-        return INCOMPLETE;
-    }
-
-
 }
