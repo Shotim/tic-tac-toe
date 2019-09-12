@@ -1,6 +1,7 @@
 package runner;
 
 class Cell {
+
     int status;
 
     static final int X_SIGN = 1;

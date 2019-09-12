@@ -1,6 +1,7 @@
 package runner;
 
 class PlayingField {
+
     private static final int RADIX = 3;
     static final int HORIZONTAL = 1;
     static final int VERTICAL = 2;
