@@ -16,7 +16,7 @@ class Game {
 
     private boolean isRunning = true;
 
-    void menu() {
+    public void menu() {
 
         while (isRunning) {
             System.out.println("!!!TIC TAC TOE!!! GAME\n");
@@ -87,9 +87,11 @@ class Game {
     }
 
     private boolean winCheck(Cell[][] field) {
-        if (lineIsEquallyFilled(PlayingField.diagonal(field, PlayingField.LEFT))) return true;
-        else if (lineIsEquallyFilled(PlayingField.diagonal(field, PlayingField.RIGHT))) return true;
-        else {
+        if (lineIsEquallyFilled(PlayingField.diagonal(field, PlayingField.LEFT))) {
+            return true;
+        } else if (lineIsEquallyFilled(PlayingField.diagonal(field, PlayingField.RIGHT))) {
+            return true;
+        } else {
             for (int i = 0; i < field.length; i++) {
                 if (lineIsEquallyFilled(PlayingField.line(field, i, PlayingField.HORIZONTAL))) return true;
                 if (lineIsEquallyFilled(PlayingField.line(field, i, PlayingField.VERTICAL))) return true;
@@ -99,12 +101,15 @@ class Game {
     }
 
     private boolean gameAlgorithm(Cell[][] field, Player player) {
-        if (findingWinSituation(field, player, BOT)) return COMPLETE;
-        else if (findingWinSituation(field, player, HUMAN)) return COMPLETE;
-        else if (field[field.length / 2][field.length / 2].isEmpty())
+        if (findingWinSituation(field, player, BOT)) {
+            return COMPLETE;
+        } else if (findingWinSituation(field, player, HUMAN)) {
+            return COMPLETE;
+        } else if (field[field.length / 2][field.length / 2].isEmpty()) {
             player.markTheCell(field[field.length / 2][field.length / 2]);
-        else if (findingCellToMark(field, player, ANGLE)) return COMPLETE;
-        else findingCellToMark(field, player, ANY);
+        } else if (findingCellToMark(field, player, ANGLE)) {
+            return COMPLETE;
+        } else findingCellToMark(field, player, ANY);
         return COMPLETE;
     }
 

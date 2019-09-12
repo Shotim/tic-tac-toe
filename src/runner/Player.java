@@ -6,26 +6,25 @@ class Player {
     private static final int FIRST = 1;
     private static final int SECOND = 2;
 
-
     int playerTurn;
 
     Player() {
         playerTurn = FIRST;
     }
 
-    void turnChange() {
+    public void turnChange() {
         playerTurn = (playerTurn == FIRST) ? SECOND : FIRST;
     }
 
-    void markTheCell(Cell cell) {
+    public void markTheCell(Cell cell) {
         cell.status = (playerTurn == FIRST) ? Cell.X_SIGN : Cell.O_SIGN;
     }
 
-    void unmarkTheCell(Cell cell) {
+    public void unmarkTheCell(Cell cell) {
         cell.status = 0;
     }
 
-    void makeAMove(Cell[][] field) {
+    public void makeAMove(Cell[][] field) {
         boolean canBeSigned = false;
 
         System.out.println("The " + playerTurn + "-th player, your turn!");
