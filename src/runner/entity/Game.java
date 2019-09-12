@@ -1,8 +1,11 @@
-package runner;
+package runner.entity;
 
+import runner.entity.Player;
+import runner.field.Cell;
+import runner.field.PlayingField;
 import scanner.EnterFromConsole;
 
-class Game {
+public class Game {
 
     private static final int BOT = 1;
     private static final int HUMAN = -1;

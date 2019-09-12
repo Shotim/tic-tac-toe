@@ -1,12 +1,14 @@
-package runner;
+package runner.field;
 
-class PlayingField {
+import runner.field.Cell;
+
+public class PlayingField {
 
     private static final int RADIX = 3;
-    static final int HORIZONTAL = 1;
-    static final int VERTICAL = 2;
-    static final int LEFT = 3;
-    static final int RIGHT = 4;
+    public static final int HORIZONTAL = 1;
+    public static final int VERTICAL = 2;
+    public static final int LEFT = 3;
+    public static final int RIGHT = 4;
 
 
     public static Cell[] line(Cell[][] field, int indexNumber, int lineType) {

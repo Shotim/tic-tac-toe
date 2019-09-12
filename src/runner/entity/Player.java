@@ -1,8 +1,9 @@
-package runner;
+package runner.entity;
 
+import runner.field.Cell;
 import scanner.EnterFromConsole;
 
-class Player {
+public class Player {
 
     private static final int FIRST = 1;
     private static final int SECOND = 2;

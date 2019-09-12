@@ -1,13 +1,13 @@
-package runner;
+package runner.field;
 
-class Cell {
+public class Cell {
 
-    int status;
+    public int status;
 
-    static final int X_SIGN = 1;
-    static final int O_SIGN = -1;
+    public static final int X_SIGN = 1;
+    public static final int O_SIGN = -1;
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return status == 0;
     }
 
